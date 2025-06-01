@@ -1,0 +1,1616 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Vista | Premium Italian Restaurant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --ivory: #f8f4e9;
+            --light-gray: #e8e8e8;
+            --ice-blue: #e0f2fe;
+            --gold: #d4af37;
+            --dark-gray: #333333;
+            --glass-bg: rgba(255, 255, 255, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: var(--ivory);
+            color: var(--dark-gray);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: var(--text-shadow);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-family: 'Raleway', sans-serif;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Neumorphism Effect (used sparingly) */
+        .neumorphic-btn {
+            background: var(--ivory);
+            border: none;
+            border-radius: 50px;
+            box-shadow: 5px 5px 10px #d9d9d9, 
+                        -5px -5px 10px #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .neumorphic-btn:hover {
+            box-shadow: inset 5px 5px 10px #d9d9d9, 
+                        inset -5px -5px 10px #ffffff;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--gold);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(248, 244, 233, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled .logo {
+            color: var(--dark-gray);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        header.scrolled .nav-links a {
+            color: var(--dark-gray);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 2px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled .hamburger div {
+            background-color: var(--dark-gray);
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80') no-repeat center center/cover;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: var(--text-shadow);
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--ivory);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            padding-right: 2rem;
+        }
+
+        .about-image {
+            position: relative;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Menu Section */
+        #menu {
+            background-color: var(--light-gray);
+            position: relative;
+        }
+
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            background: none;
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            color: var(--dark-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--gold);
+            color: white;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .menu-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-item .glass-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .menu-item h3 {
+            color: var(--gold);
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--gold);
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+
+        /* Wine Section */
+        #wine {
+            background-color: var(--ivory);
+        }
+
+        .wine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .wine-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .wine-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .wine-item .glass-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wine-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .wine-region {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .wine-price {
+            margin-top: auto;
+            padding-top: 1rem;
+            font-weight: 700;
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background-color: var(--light-gray);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--ivory);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        .map-container {
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--dark-gray);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* Reservation Form */
+        .reservation-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Raleway', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Item Detail Modal */
+        .item-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .item-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .item-modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--gold);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .modal-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin: 1rem 0;
+        }
+
+        /* Falling Leaves Animation */
+        .leaf {
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            z-index: 1;
+            pointer-events: none;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(248, 244, 233, 0.95);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.5s ease;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+
+            .nav-links a {
+                color: var(--dark-gray);
+                font-size: 1.2rem;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .menu-grid, .wine-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Leaf animations - different paths and timings */
+        @keyframes fallingLeaf1 {
+            0% {
+                transform: translate(0, -10%) rotate(0deg);
+            }
+            100% {
+                transform: translate(30vw, 100vh) rotate(360deg);
+            }
+        }
+
+        @keyframes fallingLeaf2 {
+            0% {
+                transform: translate(0, -10%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-20vw, 100vh) rotate(-360deg);
+            }
+        }
+
+        @keyframes fallingLeaf3 {
+            0% {
+                transform: translate(0, -10%) rotate(0deg);
+            }
+            100% {
+                transform: translate(15vw, 100vh) rotate(180deg);
+            }
+        }
+
+        @keyframes fallingLeaf4 {
+            0% {
+                transform: translate(0, -10%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-10vw, 100vh) rotate(-180deg);
+            }
+        }
+
+        @keyframes sway {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-3 {
+            margin-bottom: 3rem;
+        }
+
+        .mt-3 {
+            margin-top: 3rem;
+        }
+
+        /* Leaf styles - different sizes and colors */
+        .leaf-1 {
+            width: 40px;
+            height: 40px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff9e80" d="M50 0c-10 20-20 30-30 40 10 10 20 20 30 30 10-10 20-20 30-30-10-10-20-20-30-40z"/></svg>');
+            animation: fallingLeaf1 15s linear infinite, sway 3s ease-in-out infinite;
+            animation-delay: 0s;
+        }
+
+        .leaf-2 {
+            width: 50px;
+            height: 50px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff7043" d="M50 0c-10 20-20 30-30 40 10 10 20 20 30 30 10-10 20-20 30-30-10-10-20-20-30-40z"/></svg>');
+            animation: fallingLeaf2 20s linear infinite, sway 4s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        .leaf-3 {
+            width: 35px;
+            height: 35px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff5722" d="M50 0c-10 20-20 30-30 40 10 10 20 20 30 30 10-10 20-20 30-30-10-10-20-20-30-40z"/></svg>');
+            animation: fallingLeaf3 18s linear infinite, sway 3.5s ease-in-out infinite;
+            animation-delay: 5s;
+        }
+
+        .leaf-4 {
+            width: 45px;
+            height: 45px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23e64a19" d="M50 0c-10 20-20 30-30 40 10 10 20 20 30 30 10-10 20-20 30-30-10-10-20-20-30-40z"/></svg>');
+            animation: fallingLeaf4 25s linear infinite, sway 5s ease-in-out infinite;
+            animation-delay: 7s;
+        }
+
+        .leaf-5 {
+            width: 30px;
+            height: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffcc80" d="M50 0c-10 20-20 30-30 40 10 10 20 20 30 30 10-10 20-20 30-30-10-10-20-20-30-40z"/></svg>');
+            animation: fallingLeaf1 22s linear infinite, sway 4.5s ease-in-out infinite;
+            animation-delay: 10s;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--ivory);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--gold);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Bella Vista</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#wine">Wine</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <!-- Falling leaves will be added here with JavaScript -->
+        <div class="hero-content">
+            <h1>Bella Vista</h1>
+            <p>Art of Italy on Your Plate</p>
+            <a href="#contact" class="btn">Book a Table</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Story</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Founded in 2010, Bella Vista has become a landmark of authentic Italian cuisine with a modern twist. Our name, meaning "Beautiful View," reflects both our stunning panoramic location and our vision of culinary excellence.</p>
+                    <p>Under the guidance of Chef Marco Lombardi, our team brings the flavors of Italy's diverse regions to your table, using only the finest seasonal ingredients sourced locally and imported directly from Italy.</p>
+                    <p>At Bella Vista, we believe dining is an art form - a harmonious blend of taste, atmosphere, and hospitality that creates unforgettable moments.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Chef Marco Lombardi">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Menu</h2>
+            </div>
+            <div class="menu-categories">
+                <button class="category-btn active" data-category="antipasti">Antipasti</button>
+                <button class="category-btn" data-category="pasta">Primi Piatti</button>
+                <button class="category-btn" data-category="main">Secondi Piatti</button>
+                <button class="category-btn" data-category="dessert">Dolci</button>
+            </div>
+            <div class="menu-grid">
+                <!-- Antipasti -->
+                <div class="menu-item visible" data-category="antipasti">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1678&q=80" alt="Bruschetta">
+                        <h3>Bruschetta Classica</h3>
+                        <p>Toasted bread topped with fresh tomatoes, basil, garlic, and extra virgin olive oil.</p>
+                        <div class="price">$14</div>
+                    </div>
+                </div>
+                <div class="menu-item visible" data-category="antipasti">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1625943555419-56a2cb25a5c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80" alt="Caprese">
+                        <h3>Caprese di Bufala</h3>
+                        <p>Fresh buffalo mozzarella with vine-ripened tomatoes, basil, and balsamic glaze.</p>
+                        <div class="price">$18</div>
+                    </div>
+                </div>
+                <div class="menu-item visible" data-category="antipasti">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Carpaccio">
+                        <h3>Carpaccio di Manzo</h3>
+                        <p>Thinly sliced raw beef tenderloin with arugula, parmesan, and truffle oil.</p>
+                        <div class="price">$22</div>
+                    </div>
+                </div>
+                <!-- Pasta -->
+                <div class="menu-item" data-category="pasta">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Pasta">
+                        <h3>Tagliatelle al Tartufo</h3>
+                        <p>Handmade tagliatelle with black truffle cream sauce and parmesan.</p>
+                        <div class="price">$26</div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="pasta">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1611270629569-8b357cb88da9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Risotto">
+                        <h3>Risotto ai Frutti di Mare</h3>
+                        <p>Creamy arborio rice with mixed seafood, white wine, and saffron.</p>
+                        <div class="price">$28</div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="pasta">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1611273426858-450d0e9a6f56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Gnocchi">
+                        <h3>Gnocchi al Pomodoro</h3>
+                        <p>Homemade potato gnocchi with fresh tomato sauce and basil.</p>
+                        <div class="price">$24</div>
+                    </div>
+                </div>
+                <!-- Main Courses -->
+                <div class="menu-item" data-category="main">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Osso Buco">
+                        <h3>Osso Buco alla Milanese</h3>
+                        <p>Braised veal shanks with vegetables, white wine, and broth, served with risotto.</p>
+                        <div class="price">$38</div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="main">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1603833666586-08ab9a3eb4a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Branzino">
+                        <h3>Branzino al Forno</h3>
+                        <p>Whole Mediterranean sea bass baked with lemon, herbs, and olive oil.</p>
+                        <div class="price">$36</div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="main">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1594554296591-0089a7686d59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Pollo">
+                        <h3>Pollo alla Cacciatora</h3>
+                        <p>Chicken braised with tomatoes, bell peppers, onions, and herbs.</p>
+                        <div class="price">$32</div>
+                    </div>
+                </div>
+                <!-- Desserts -->
+                <div class="menu-item" data-category="dessert">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1563724535-0c3100f31927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Tiramisu">
+                        <h3>Tiramisu Classico</h3>
+                        <p>Layers of coffee-soaked ladyfingers with mascarpone cream and cocoa powder.</p>
+                        <div class="price">$12</div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1578985545062-699fcf379f8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Panna Cotta">
+                        <h3>Panna Cotta ai Frutti di Bosco</h3>
+                        <p>Creamy vanilla panna cotta with mixed berry compote.</p>
+                        <div class="price">$11</div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1565310022184-f23a884f29da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Cannoli">
+                        <h3>Cannoli Siciliani</h3>
+                        <p>Crispy pastry shells filled with sweet ricotta cream and chocolate chips.</p>
+                        <div class="price">$10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wine Section -->
+    <section id="wine">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Wine Selection</h2>
+            </div>
+            <div class="wine-grid">
+                <div class="wine-item visible">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1551029506-92ddba851293?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Barolo">
+                        <h3>Barolo DOCG 2018</h3>
+                        <div class="wine-region">Piedmont, Italy</div>
+                        <p>A full-bodied red wine with notes of tar, roses, and dark fruit. Perfect with red meats and aged cheeses.</p>
+                        <div class="wine-price">$95</div>
+                    </div>
+                </div>
+                <div class="wine-item visible">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1560370903-910577248259?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Chianti">
+                        <h3>Chianti Classico DOCG 2020</h3>
+                        <div class="wine-region">Tuscany, Italy</div>
+                        <p>A medium-bodied red with flavors of cherry, plum, and herbs. Excellent with tomato-based dishes and grilled meats.</p>
+                        <div class="wine-price">$55</div>
+                    </div>
+                </div>
+                <div class="wine-item visible">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1551598640-7c59f66b4f2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Prosecco">
+                        <h3>Prosecco Superiore DOCG</h3>
+                        <div class="wine-region">Veneto, Italy</div>
+                        <p>A sparkling white wine with aromas of apple, pear, and white flowers. Ideal as an aperitif or with light appetizers.</p>
+                        <div class="wine-price">$45</div>
+                    </div>
+                </div>
+                <div class="wine-item visible">
+                    <div class="glass-card">
+                        <img src="https://images.unsplash.com/photo-1593363930512-ebda1b721c1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Amarone">
+                        <h3>Amarone della Valpolicella DOCG 2017</h3>
+                        <div class="wine-region">Veneto, Italy</div>
+                        <p>A rich, full-bodied red wine with intense flavors of dark fruit, chocolate, and spices. Pairs well with game and aged cheeses.</p>
+                        <div class="wine-price">$120</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Gallery</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Dining Area">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Wine Cellar">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Chef at Work">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Dessert Presentation">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Pasta Dish">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Restaurant Exterior">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-container">
+                <div class="reservation-form">
+                    <h3>Make a Reservation</h3>
+                    <form id="reservationForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <input type="time" id="time" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Number of Guests</label>
+                            <input type="number" id="guests" class="form-control" min="1" max="20" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Special Requests</label>
+                            <textarea id="message" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="btn neumorphic-btn">Book Now</button>
+                    </form>
+                </div>
+                <div>
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Address</h4>
+                                <p>123 Via Roma, Florence, Italy 50123</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+39 055 1234567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>info@bellavista-italian.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Opening Hours</h4>
+                                <p>Tuesday - Sunday: 12:00 PM - 11:00 PM</p>
+                                <p>Monday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2965.0824050173574!2d-81.3786964241542!3d28.538577775664222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e776f4b8c7c7f9%3A0x3b8c7c7f9e8c7c7f!2s123%20Main%20St%2C%20Orlando%2C%20FL%2032801%2C%20USA!5e0!3m2!1sen!2sbg!4v1631234567890!5m2!1sen!2sbg" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#about">About</a>
+                <a href="#menu">Menu</a>
+                <a href="#wine">Wine</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <p class="copyright">&copy; 2023 Bella Vista Premium Italian Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Item Detail Modal -->
+    <div class="item-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img class="modal-image" src="" alt="Item Image">
+            <div class="modal-body">
+                <div>
+                    <h3 class="modal-title">Item Title</h3>
+                    <p class="modal-description">Item description goes here. This is a detailed description of the selected menu item or wine.</p>
+                </div>
+                <div>
+                    <div class="modal-price">$00.00</div>
+                    <button class="btn">Order Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-content">
+            <img src="" alt="Lightbox Image">
+        </div>
+    </div>
+
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Preloader
+            const preloader = document.querySelector('.preloader');
+
+            window.addEventListener('load', function() {
+                preloader.classList.add('fade-out');
+            });
+
+            // Header scroll effect
+            const header = document.querySelector('header');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Animate elements when they come into view
+                animateOnScroll();
+            });
+
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+
+            // Menu category filtering
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const menuItems = document.querySelectorAll('.menu-item');
+
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryBtns.forEach(button => {
+                        button.classList.remove('active');
+                    });
+
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    // Get the category from data attribute
+                    const category = this.getAttribute('data-category');
+
+                    // Show/hide menu items based on category
+                    menuItems.forEach(item => {
+                        if (category === 'all' || item.getAttribute('data-category') === category) {
+                            item.classList.add('visible');
+
+                            // Animate the item with a delay based on its position
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, 100 * Array.from(menuItems).indexOf(item));
+                        } else {
+                            item.classList.remove('visible');
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateY(20px)';
+                        }
+                    });
+                });
+            });
+
+            // Initialize menu items animation
+            setTimeout(() => {
+                document.querySelectorAll('.menu-item.visible').forEach((item, index) => {
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100 * index);
+                });
+            }, 100);
+
+            // Initialize wine items animation
+            setTimeout(() => {
+                document.querySelectorAll('.wine-item').forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100 * index);
+                });
+            }, 100);
+
+            // Gallery lightbox
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxContent = document.querySelector('.lightbox-content img');
+            const closeLightbox = document.querySelector('.close-lightbox');
+
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').getAttribute('src');
+                    lightboxContent.setAttribute('src', imgSrc);
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            closeLightbox.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close lightbox when clicking outside the image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Item modal
+            const menuCards = document.querySelectorAll('.menu-item .glass-card, .wine-item .glass-card');
+            const itemModal = document.querySelector('.item-modal');
+            const modalContent = document.querySelector('.item-modal .modal-content');
+            const modalImage = document.querySelector('.modal-image');
+            const modalTitle = document.querySelector('.modal-title');
+            const modalDescription = document.querySelector('.modal-description');
+            const modalPrice = document.querySelector('.item-modal .modal-price');
+            const closeModal = document.querySelector('.close-modal');
+
+            menuCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Prevent opening the modal if a button inside the card was clicked
+                    if (e.target.tagName === 'BUTTON') {
+                        return;
+                    }
+
+                    const imageSrc = this.querySelector('img').getAttribute('src');
+                    const title = this.querySelector('h3').textContent;
+                    const description = this.querySelector('p').textContent;
+                    const price = this.querySelector('.price, .wine-price').textContent;
+
+                    modalImage.setAttribute('src', imageSrc);
+                    modalTitle.textContent = title;
+                    modalDescription.textContent = description;
+                    modalPrice.textContent = price;
+
+                    itemModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            closeModal.addEventListener('click', function() {
+                itemModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close modal when clicking outside the content
+            itemModal.addEventListener('click', function(e) {
+                if (e.target === itemModal) {
+                    itemModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Form submission
+            const reservationForm = document.getElementById('reservationForm');
+
+            reservationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const date = document.getElementById('date').value;
+                const time = document.getElementById('time').value;
+                const guests = document.getElementById('guests').value;
+                const message = document.getElementById('message').value;
+
+                // Here you would typically send the data to a server
+                // For this example, we'll just show an alert
+                alert(`Thank you for your reservation, ${name}! We will contact you at ${email} to confirm.`);
+
+                // Reset the form
+                reservationForm.reset();
+            });
+
+            // Create falling leaves
+            function createLeaf() {
+                const leaf = document.createElement('div');
+                leaf.classList.add('leaf');
+
+                // Randomly select a leaf type
+                const leafTypes = ['leaf-1', 'leaf-2', 'leaf-3', 'leaf-4', 'leaf-5'];
+                const randomLeafType = leafTypes[Math.floor(Math.random() * leafTypes.length)];
+                leaf.classList.add(randomLeafType);
+
+                // Set random position and animation duration
+                leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.top = -100 + 'px';
+                leaf.style.animationDuration = 10 + Math.random() * 20 + 's';
+
+                // Add leaf to the hero section
+                document.getElementById('hero').appendChild(leaf);
+
+                // Remove leaf after animation completes
+                setTimeout(() => {
+                    leaf.remove();
+                }, 20000); // Match this with the longest animation duration
+            }
+
+            // Create leaves at regular intervals
+            setInterval(createLeaf, 500);
+
+            // Animate elements when they come into view
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.glass-card, .contact-item, .about-image');
+
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    if (elementPosition < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+
+            // Initial animation check
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
